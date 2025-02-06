@@ -21,18 +21,19 @@ public class TransacaoService {
 
         log.info("Iniciado o processamento de gravar transações.");
 
-        if(dto.dataHora().isAfter(OffsetDateTime.now())) {
+        if (dto.dataHora().isAfter(OffsetDateTime.now())) {
             log.error("Data e hora da transação maiores que a data e hora atual.");
             throw new UnprocessableEntity("Data e hora da transação maiores que a data e hora atual.");
         }
-        if(dto.valor() < 0) {
+        if (dto.valor() < 0) {
             log.error("O valor da transação não pode ser menor que zero.");
             throw new UnprocessableEntity("O valor da transação não pode ser menor que zero.");
         }
 
         listaTransacoes.add(dto);
 
-        }
+    }
+
     public void limparTransacoes() {
         listaTransacoes.clear();
     }
